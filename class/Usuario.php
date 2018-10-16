@@ -41,12 +41,7 @@
 			));
 
 			if(count($result) > 0 ){
-				$row = $result[0];
-
-				$this->setId($row['id']);
-				$this->setLogin($row['login']);
-				$this->setSenha($row['senha']);
-				$this->setDtc(new DateTime($row['dtc']));
+				$this->setData($result[0]);
 			}
 		}
 
@@ -81,16 +76,36 @@
 			));
 
 			if(count($result) > 0 ){
-				$row = $result[0];
-
-				$this->setId($row['id']);
-				$this->setLogin($row['login']);
-				$this->setSenha($row['senha']);
-				$this->setDtc(new DateTime($row['dtc']));
+				$this->setData($result[0]);
 			} else{
 				throw new Exception("Login ou senha inválidos", 1);
 				
 			}
+		}
+
+		public function setData($data){
+				$this->setId($data['id']);
+				$this->setLogin($data['login']);
+				$this->setSenha($data['senha']);
+				$this->setDtc(new DateTime($data['dtc']));
+		}
+
+		public function insert(){
+			$sql = new Sql();
+
+			$result = $sql->select("CALL sp_usuarios_insert(:LOGIN, :SENHA)", array(
+				":LOGIN"=>$this->getLogin(),
+				":SENHA"=>$this->getSenha()
+			));
+
+			if(count($result) > 0){
+				$this->setData($result[0]);
+			}
+		}
+
+		public function __construct($login = "", $senha = ""){
+			$this->setLogin($login);
+			$this->setSenha($senha);
 		}
 	}
 ?>

@@ -21,8 +21,16 @@
 
 		// echo json_encode($search);
 
-	$usuario = new Usuario();
-	$usuario->loginDados('121g', "33");
+	// $usuario = new Usuario();
+	// $usuario->loginDados('121g', "33");
 
-	echo $usuario;
+	// echo $usuario;
+
+	$aluno = new Usuario("Aluno", "Aluno10");
+	$aluno->setLogin('Aluno');
+	$aluno->setSenha('Aluno10');
+
+		$aluno->insert();
+
+		echo $aluno;
 ?>
