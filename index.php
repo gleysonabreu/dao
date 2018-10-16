@@ -34,10 +34,17 @@
 
 		// echo $aluno;
 
-	$update = new Usuario();
-	$update->loadById(1);
+	// $update = new Usuario();
+	// $update->loadById(1);
 
-		$update->update("prof", "123");
+		// $update->update("prof", "123");
 
-		echo $update;
+		// echo $update;
+
+	$del = new Usuario();
+	$del->loadById(1);
+
+		$del->delete();
+
+		echo $del;
 ?>

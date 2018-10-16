@@ -119,5 +119,21 @@
 				":id"=>$this->getId()
 			));
 		}
+
+		public function delete(){
+			$sql = new Sql();
+
+			$sql->query("DELETE FROM tbl_usuarios WHERE id = :id", array(
+				":id"=>$this->getId()
+			));
+
+			$this->setId(0);
+			$this->setLogin('');
+			$this->setSenha('');
+			$this->setDtc(new DateTime());
+
+		}
+
+
 	}
 ?>
