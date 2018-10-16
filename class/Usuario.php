@@ -107,5 +107,17 @@
 			$this->setLogin($login);
 			$this->setSenha($senha);
 		}
+
+		public function update($login, $password){
+			$this->setLogin($login);
+			$this->setSenha($password);
+			$sql = new Sql();
+
+			$sql->query("UPDATE tbl_usuarios SET login = :login, senha = :senha WHERE id = :id", array(
+				":login"=>$this->getLogin(),
+				":senha"=>$this->getSenha(),
+				":id"=>$this->getId()
+			));
+		}
 	}
 ?>

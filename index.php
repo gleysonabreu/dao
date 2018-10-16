@@ -26,11 +26,18 @@
 
 	// echo $usuario;
 
-	$aluno = new Usuario("Aluno", "Aluno10");
-	$aluno->setLogin('Aluno');
-	$aluno->setSenha('Aluno10');
+	// $aluno = new Usuario("Aluno", "Aluno10");
+	// $aluno->setLogin('Aluno');
+	// $aluno->setSenha('Aluno10');
 
-		$aluno->insert();
+		// $aluno->insert();
 
-		echo $aluno;
+		// echo $aluno;
+
+	$update = new Usuario();
+	$update->loadById(1);
+
+		$update->update("prof", "123");
+
+		echo $update;
 ?>
