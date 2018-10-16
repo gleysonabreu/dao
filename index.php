@@ -7,9 +7,22 @@
 
 	// echo json_encode($usuarios);
 
-	$root = new Usuario();
+	// $root = new Usuario();
 
-	$root->loadById(1);
+	// $root->loadById(1);
 
-	echo $root;
+	// echo $root;
+
+	// $lista = Usuario::getList();
+
+	// echo json_encode($lista);
+
+	// $search = Usuario::getSearch('g');
+
+		// echo json_encode($search);
+
+	$usuario = new Usuario();
+	$usuario->loginDados('121g', "33");
+
+	echo $usuario;
 ?>

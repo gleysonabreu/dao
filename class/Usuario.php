@@ -58,5 +58,39 @@
 				"dtc"=>$this->getDtc()->format("d/m/Y H:i:s")
 			));
 		}
+
+		public static function getList(){
+			$sql = new Sql();
+
+			return $sql->select("SELECT * FROM tbl_usuarios ORDER BY id DESC");
+		}
+
+		public static function getSearch($login){
+			$sql = new Sql();
+
+			return $sql->select("SELECT * FROM tbl_usuarios WHERE login LIKE :SEARCH ORDER BY login", array(
+				":SEARCH"=>"%$login%"
+			));
+		}
+
+		public function loginDados($login, $senha){
+			$sql = new Sql();
+			$result = $sql->select("SELECT * FROM tbl_usuarios WHERE login = :login AND senha = :pass", array(
+				":login" => $login,
+				":pass"=>$senha
+			));
+
+			if(count($result) > 0 ){
+				$row = $result[0];
+
+				$this->setId($row['id']);
+				$this->setLogin($row['login']);
+				$this->setSenha($row['senha']);
+				$this->setDtc(new DateTime($row['dtc']));
+			} else{
+				throw new Exception("Login ou senha inválidos", 1);
+				
+			}
+		}
 	}
 ?>
